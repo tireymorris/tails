@@ -1,5 +1,6 @@
 require 'bundler/setup'
 require 'logger'
+import 'deeznuts'
 
 ENV['RACK_ENV'] ||= 'development'
 
