@@ -21,6 +21,7 @@ A modern Ruby web application built with Falcon, Roda, ActiveRecord, and more.
 - Beautiful UI with Tailwind CSS
 - Protected routes and API endpoints
 - RESTful API structure
+- Structured logging with Ruby Logger (DEBUG level in development, INFO in production)
 
 ## Setup
 
@@ -81,6 +82,24 @@ bundle exec rackup
 ```
 
 The application will be available at `http://localhost:1234` (or `http://localhost:9292` if running Falcon/Rackup directly).
+
+## Logging
+
+The application uses Ruby's built-in Logger with the following configuration:
+
+- **Development**: DEBUG level - shows all logs including detailed authentication flow
+- **Production**: INFO level - shows important events only (logins, registrations, errors)
+
+Log format: `[YYYY-MM-DD HH:MM:SS] LEVEL: message`
+
+Example logs:
+
+```
+[2025-11-14 14:22:01] DEBUG: Login attempt for email: user@example.com
+[2025-11-14 14:22:01] DEBUG: User found: ID 1
+[2025-11-14 14:22:01] DEBUG: Authentication result: success
+[2025-11-14 14:22:01] INFO: User 1 (user@example.com) logged in successfully
+```
 
 ## Project Structure
 

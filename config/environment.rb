@@ -1,6 +1,10 @@
 require 'bundler/setup'
+require 'logger'
 
 ENV['RACK_ENV'] ||= 'development'
+
+$stdout.sync = true
+$stderr.sync = true
 
 require 'active_support'
 require 'active_support/core_ext'
@@ -9,6 +13,12 @@ require 'active_model'
 require 'active_model/secure_password'
 require 'jwt'
 require 'bcrypt'
+
+AppLogger = Logger.new($stdout)
+AppLogger.level = ENV['RACK_ENV'] == 'production' ? Logger::INFO : Logger::DEBUG
+AppLogger.formatter = proc do |severity, datetime, _progname, msg|
+  "[#{datetime.strftime('%Y-%m-%d %H:%M:%S')}] #{severity}: #{msg}\n"
+end
 
 ActiveRecord::Base.establish_connection(
   adapter: 'sqlite3',
