@@ -4,9 +4,6 @@ class App < Roda
   plugin :render, views: 'app/views', engine: 'erb'
   plugin :assets, css: 'app.css', path: 'app/assets'
   plugin :public, root: 'public'
-  plugin :sessions,
-         secret: ENV['SESSION_SECRET'] || 'change_me_in_production_please_use_long_random_string_at_least_64_chars',
-         key: 'ruby_app.session'
   plugin :all_verbs
   plugin :json
   plugin :halt
@@ -14,6 +11,10 @@ class App < Roda
 
   include AuthHelper
   include JWTHelper
+
+  def session
+    env['rack.session']
+  end
 
   def cookies
     request.cookies
