@@ -7,6 +7,7 @@ use Rack::Session::Cookie,
     path: '/',
     httponly: true,
     secure: ENV['RACK_ENV'] == 'production',
-    same_site: :lax
+    same_site: :lax,
+    expire_after: 24 * 60 * 60
 
 run App

@@ -11,7 +11,6 @@ class App < Roda
   plugin :multi_route
 
   include AuthHelper
-  include JWTHelper
   include CookieHelper
 
   def session
@@ -33,12 +32,10 @@ class App < Roda
     r.root do
       AppLogger.debug "Root route hit - Session user_id: #{session[:user_id].inspect}"
       AppLogger.debug "Root route hit - @current_user: #{@current_user ? "ID #{@current_user.id} (#{@current_user.email})" : 'nil'}"
-      AppLogger.debug "Root route hit - Cookie jwt_token present: #{cookies['jwt_token'].present?}"
       view('home')
     end
   end
 end
 
 require_relative 'routes/auth'
-require_relative 'routes/api'
 require_relative 'routes/dashboard'

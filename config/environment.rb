@@ -11,7 +11,6 @@ require 'active_support/core_ext'
 require 'active_record'
 require 'active_model'
 require 'active_model/secure_password'
-require 'jwt'
 require 'bcrypt'
 
 AppLogger = Logger.new($stdout)

@@ -20,9 +20,8 @@ class App < Roda
 
         if auth_result
           session[:user_id] = user.id
+          session[:expires_at] = 24.hours.from_now.to_i
           AppLogger.info "User #{user.id} (#{email}) logged in successfully"
-          token = generate_jwt(user)
-          set_cookie_value('jwt_token', token, httponly: true, secure: ENV['RACK_ENV'] == 'production')
           flash[:success] = 'Successfully logged in'
           r.redirect '/'
         else
@@ -60,8 +59,7 @@ class App < Roda
         AppLogger.info "User #{user.id} (#{email}) registered successfully"
         AppLogger.debug "Password digest created: #{user.password_digest.present?}"
         session[:user_id] = user.id
-        token = generate_jwt(user)
-        set_cookie_value('jwt_token', token, httponly: true, secure: ENV['RACK_ENV'] == 'production')
+        session[:expires_at] = 24.hours.from_now.to_i
         flash[:success] = 'Successfully registered'
         AppLogger.info '=== REGISTRATION SUCCESS - redirecting to / ==='
         r.redirect '/'
@@ -82,7 +80,6 @@ class App < Roda
       user_id = session[:user_id]
       AppLogger.info "User #{user_id} logged out" if user_id
       session.clear
-      delete_cookie_value('jwt_token')
       flash[:success] = 'Successfully logged out'
       r.redirect '/'
     end
