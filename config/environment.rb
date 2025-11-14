@@ -1,13 +1,14 @@
 require 'bundler/setup'
-Bundler.require(:default, ENV['RACK_ENV'] || 'development')
-
-require 'active_record'
-require 'active_support'
-require 'active_support/core_ext'
-require 'sorcery'
-require 'jwt'
 
 ENV['RACK_ENV'] ||= 'development'
+
+require 'active_support'
+require 'active_support/core_ext'
+require 'active_record'
+require 'active_model'
+require 'active_model/secure_password'
+require 'jwt'
+require 'bcrypt'
 
 ActiveRecord::Base.establish_connection(
   adapter: 'sqlite3',

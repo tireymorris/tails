@@ -7,14 +7,15 @@ A modern Ruby web application built with Falcon, Roda, ActiveRecord, and more.
 - **Falcon** - High-performance web server
 - **Roda** - Fast, simple routing tree web framework
 - **ActiveRecord** - Database ORM
+- **ActiveModel** - Model layer with has_secure_password
 - **ActiveSupport** - Ruby utilities and extensions
-- **Sorcery** - Authentication framework
+- **BCrypt** - Secure password hashing
 - **JWT** - JSON Web Token authentication
-- **Tailwind CSS** - Utility-first CSS framework
+- **Tailwind CSS** - Utility-first CSS framework (via CDN)
 
 ## Features
 
-- User authentication with Sorcery
+- User authentication with has_secure_password
 - Cookie-based sessions
 - JWT token support for API endpoints
 - Beautiful UI with Tailwind CSS
@@ -57,19 +58,29 @@ This creates a demo user:
 
 ## Running the Application
 
-### Development with Falcon:
+### Quick Start (Recommended):
+
+```bash
+./bin/dev
+```
+
+This uses foreman to manage the application processes defined in `Procfile.dev`.
+
+### Alternative Methods:
+
+#### Development with Falcon:
 
 ```bash
 bundle exec falcon serve
 ```
 
-### Development with Rackup:
+#### Development with Rackup:
 
 ```bash
 bundle exec rackup
 ```
 
-The application will be available at `http://localhost:9292` (Falcon) or `http://localhost:9292` (Rackup).
+The application will be available at `http://localhost:1234` (or `http://localhost:9292` if running Falcon/Rackup directly).
 
 ## Project Structure
 

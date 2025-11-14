@@ -2,20 +2,19 @@ source 'https://rubygems.org'
 
 ruby '~> 3.2'
 
-gem 'falcon'
-gem 'roda'
+gem 'activemodel'
 gem 'activerecord'
 gem 'activesupport'
-gem 'sorcery'
-gem 'jwt'
-gem 'sqlite3'
-gem 'rake'
 gem 'bcrypt'
-
-gem 'tailwindcss-rails'
+gem 'erubi'
+gem 'falcon'
+gem 'jwt'
+gem 'rake'
+gem 'roda'
+gem 'sqlite3'
+gem 'tilt'
 
 group :development do
   gem 'puma'
   gem 'rerun'
 end
-

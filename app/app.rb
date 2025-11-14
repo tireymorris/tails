@@ -4,8 +4,10 @@ class App < Roda
   plugin :render, views: 'app/views', engine: 'erb'
   plugin :assets, css: 'app.css', path: 'app/assets'
   plugin :public, root: 'public'
-  plugin :cookies, secret: ENV['SESSION_SECRET'] || 'change_me_in_production_please_use_long_random_string'
-  plugin :sessions, secret: ENV['SESSION_SECRET'] || 'change_me_in_production_please_use_long_random_string'
+  plugin :cookies,
+         secret: ENV['SESSION_SECRET'] || 'change_me_in_production_please_use_long_random_string_at_least_64_chars'
+  plugin :sessions,
+         secret: ENV['SESSION_SECRET'] || 'change_me_in_production_please_use_long_random_string_at_least_64_chars'
   plugin :all_verbs
   plugin :json
   plugin :halt
@@ -33,9 +35,9 @@ class App < Roda
         email = r.params['email']
         password = r.params['password']
 
-        user = User.authenticate(email, password)
+        user = User.find_by(email: email)
 
-        if user
+        if user&.authenticate(password)
           session[:user_id] = user.id
           token = generate_jwt(user)
           response.set_cookie('jwt_token', value: token, httponly: true, secure: ENV['RACK_ENV'] == 'production')

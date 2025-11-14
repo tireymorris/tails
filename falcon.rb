@@ -1,4 +1,4 @@
-load :rack, :self_signed_tls, :supervisor
+load :rack, :supervisor
 
 hostname = File.basename(__dir__)
 port = ENV.fetch('PORT', 9292).to_i
