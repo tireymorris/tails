@@ -73,20 +73,8 @@
             </div>
             <div class="flex-1 min-w-0">
               <span class="absolute inset-0" aria-hidden="true"></span>
-              <p class="text-sm font-medium text-gray-900">View Full Dashboard</p>
-              <p class="text-sm text-gray-500 truncate">Access all your data</p>
-            </div>
-          </a>
-          <a href="/api/protected/profile" class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-indigo-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-            <div class="flex-shrink-0">
-              <svg class="h-6 w-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-              </svg>
-            </div>
-            <div class="flex-1 min-w-0">
-              <span class="absolute inset-0" aria-hidden="true"></span>
-              <p class="text-sm font-medium text-gray-900">API Profile</p>
-              <p class="text-sm text-gray-500 truncate">View your JWT data</p>
+              <p class="text-sm font-medium text-gray-900">View Dashboard</p>
+              <p class="text-sm text-gray-500 truncate">Access your account</p>
             </div>
           </a>
         </div>
@@ -106,7 +94,7 @@
           <div class="flex items-center justify-between py-3 border-b border-gray-200">
             <div>
               <p class="text-sm font-medium text-gray-900">Authentication Method</p>
-              <p class="text-sm text-gray-500">Cookie Session + JWT Token</p>
+              <p class="text-sm text-gray-500">Cookie Session (24-hour expiration)</p>
             </div>
           </div>
           <div class="flex items-center justify-between py-3">
@@ -126,7 +114,7 @@
   <div class="px-4 py-6 sm:px-0">
     <div class="text-center">
       <h1 class="text-4xl font-bold text-gray-900 mb-4">Welcome to Tails 🦊</h1>
-      <p class="text-xl text-gray-600 mb-8">Built with Falcon, Roda, ActiveRecord, and more</p>
+      <p class="text-xl text-gray-600 mb-8">A minimal web framework for Ruby developers who value simplicity over magic.</p>
       
       <div class="bg-white shadow overflow-hidden sm:rounded-lg max-w-2xl mx-auto">
         <div class="px-4 py-5 sm:p-6">
@@ -136,37 +124,31 @@
               <svg class="h-5 w-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
               </svg>
-              <span class="text-gray-700"><strong>Falcon</strong> - High-performance web server</span>
+              <span class="text-gray-700"><strong>Falcon</strong> - Server</span>
             </li>
             <li class="flex items-center">
               <svg class="h-5 w-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
               </svg>
-              <span class="text-gray-700"><strong>Roda</strong> - Routing tree web framework</span>
+              <span class="text-gray-700"><strong>Roda</strong> - Routing</span>
             </li>
             <li class="flex items-center">
               <svg class="h-5 w-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
               </svg>
-              <span class="text-gray-700"><strong>ActiveRecord</strong> - ORM for database</span>
+              <span class="text-gray-700"><strong>SQLite3 + ActiveRecord</strong> - Database</span>
             </li>
             <li class="flex items-center">
               <svg class="h-5 w-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
               </svg>
-              <span class="text-gray-700"><strong>has_secure_password</strong> - Authentication system</span>
+              <span class="text-gray-700"><strong>BCrypt + Sessions</strong> - Auth</span>
             </li>
             <li class="flex items-center">
               <svg class="h-5 w-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
               </svg>
-              <span class="text-gray-700"><strong>JWT</strong> - Token-based authentication</span>
-            </li>
-            <li class="flex items-center">
-              <svg class="h-5 w-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
-              <span class="text-gray-700"><strong>Tailwind CSS</strong> - Utility-first CSS framework</span>
+              <span class="text-gray-700"><strong>ERB + Tailwind</strong> - UI</span>
             </li>
           </ul>
           

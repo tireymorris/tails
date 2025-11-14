@@ -39,45 +39,6 @@
       </div>
     </div>
 
-    <div class="mt-8 bg-white shadow overflow-hidden sm:rounded-lg">
-      <div class="px-4 py-5 sm:px-6">
-        <h3 class="text-lg leading-6 font-medium text-gray-900">
-          API Access
-        </h3>
-        <p class="mt-1 max-w-2xl text-sm text-gray-500">
-          Your authentication is managed via cookie sessions and JWT tokens.
-        </p>
-      </div>
-      <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
-        <div class="space-y-4">
-          <div>
-            <h4 class="text-sm font-medium text-gray-900 mb-2">Test Protected API Endpoint</h4>
-            <button onclick="testAPI()" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-              Test API Call
-            </button>
-            <pre id="api-result" class="mt-4 p-4 bg-gray-100 rounded-md text-sm overflow-x-auto hidden"></pre>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
-
-<script>
-async function testAPI() {
-  try {
-    const response = await fetch('/api/protected/profile', {
-      credentials: 'include'
-    });
-    const data = await response.json();
-    const resultEl = document.getElementById('api-result');
-    resultEl.textContent = JSON.stringify(data, null, 2);
-    resultEl.classList.remove('hidden');
-  } catch (error) {
-    const resultEl = document.getElementById('api-result');
-    resultEl.textContent = 'Error: ' + error.message;
-    resultEl.classList.remove('hidden');
-  }
-}
-</script>
 
