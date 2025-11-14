@@ -21,6 +21,14 @@ class App < Roda
     request.cookies
   end
 
+  def csrf_token
+    env['rack.csrf.token']
+  end
+
+  def csrf_tag
+    "<input type='hidden' name='_csrf' value='#{csrf_token}' />"
+  end
+
   route do |r|
     r.public
     r.assets

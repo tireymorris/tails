@@ -3,6 +3,13 @@ require 'fileutils'
 
 puts '==> Setting up Tails 🦊...'
 
+unless File.exist?('.env')
+  puts "\n==> Creating .env file from template..."
+  FileUtils.cp('env.example', '.env')
+  puts "⚠️  IMPORTANT: Edit .env and set SESSION_SECRET to a secure random string!"
+  puts "   Generate one with: openssl rand -hex 64"
+end
+
 puts "\n==> Installing dependencies..."
 system('bundle install') || abort('Failed to install dependencies')
 

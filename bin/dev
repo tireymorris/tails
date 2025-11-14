@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+if [ ! -f .env ]; then
+  echo "Error: .env file not found!"
+  echo "Please run ./bin/setup first or copy env.example to .env"
+  exit 1
+fi
+
 if ! command -v foreman &> /dev/null
 then
   echo "Installing foreman..."
