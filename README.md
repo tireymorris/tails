@@ -40,16 +40,12 @@ Visit `http://localhost:1234`
 
 ## What's working?
 
-- ✅ Clean separation of routes (auth, dashboard)
-- ✅ Cookie-based sessions with 24-hour expiration
-- ✅ Password hashing with bcrypt
-- ✅ HttpOnly cookies (XSS protection)
-- ✅ Secure cookies in production
-- ✅ SameSite cookie attribute (Lax)
-- ✅ Protected routes with auth checks
-- ✅ Flash messages for user feedback
-- ✅ Structured logging (DEBUG/INFO levels)
-- ✅ Generic error messages (no user enumeration)
+- ✅ Clean route separation with helper modules
+- ✅ BCrypt password hashing with 24-hour session expiration
+- ✅ Secure cookies (HttpOnly + Secure + SameSite)
+- ✅ SQLite3 + ActiveRecord with migrations
+- ✅ One-command setup and dev server
+- ✅ Structured logging and flash messages
 
 ## What's not working?
 
@@ -62,9 +58,6 @@ Security gaps to fix before production:
 - [ ] Password reset
 - [ ] Account lockout
 - [ ] Refresh tokens (currently no way to extend session without re-login)
-
-**Good for**: MVPs, internal tools, development  
-**Not ready for**: Production apps with sensitive data
 
 ## License
 
