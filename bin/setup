@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'fileutils'
 
-puts '==> Setting up Ruby App...'
+puts '==> Setting up Tails 🦊...'
 
 puts "\n==> Installing dependencies..."
 system('bundle install') || abort('Failed to install dependencies')

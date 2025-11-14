@@ -1,4 +1,4 @@
-# Ruby Web Application
+# Tails 🦊
 
 A modern Ruby web application built with Falcon, Roda, ActiveRecord, and more.
 
@@ -24,6 +24,16 @@ A modern Ruby web application built with Falcon, Roda, ActiveRecord, and more.
 - Structured logging with Ruby Logger (DEBUG level in development, INFO in production)
 
 ## Setup
+
+### Quick Setup (Recommended):
+
+```bash
+./bin/setup
+```
+
+This automated script will install dependencies, create the database, run migrations, and seed demo data.
+
+### Manual Setup:
 
 1. Install dependencies:
 
@@ -104,7 +114,7 @@ Example logs:
 ## Project Structure
 
 ```
-ruby_app/
+tails/
 ├── app/
 │   ├── app.rb              # Main Roda application
 │   ├── helpers/            # Helper modules
