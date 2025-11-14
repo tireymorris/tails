@@ -11,30 +11,23 @@
       </div>
       <div class="border-t border-gray-200">
         <dl>
-          <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-sm font-medium text-gray-500">
-              Email address
-            </dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              <%= @current_user.email %>
-            </dd>
-          </div>
-          <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-sm font-medium text-gray-500">
-              User ID
-            </dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              <%= @current_user.id %>
-            </dd>
-          </div>
-          <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-sm font-medium text-gray-500">
-              Member since
-            </dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              <%= @current_user.created_at.strftime("%B %d, %Y") %>
-            </dd>
-          </div>
+          <%= render('_data_row', locals: {
+            bg_class: 'bg-gray-50',
+            label: 'Email address',
+            value: @current_user.email
+          }) %>
+          
+          <%= render('_data_row', locals: {
+            bg_class: 'bg-white',
+            label: 'User ID',
+            value: @current_user.id
+          }) %>
+          
+          <%= render('_data_row', locals: {
+            bg_class: 'bg-gray-50',
+            label: 'Member since',
+            value: @current_user.created_at.strftime("%B %d, %Y")
+          }) %>
         </dl>
       </div>
     </div>
