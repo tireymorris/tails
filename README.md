@@ -72,13 +72,28 @@ Visit `http://localhost:1234`
 
 ## What's not working?
 
-Security gaps to fix before production:
+### Security gaps to fix before production:
 
 - [ ] Email verification
 - [ ] Password reset
 - [ ] Account lockout after failed attempts
 - [ ] Refresh tokens (currently no way to extend session without re-login)
 - [ ] Security headers (X-Frame-Options, CSP, etc.)
+
+### Missing features:
+
+- **No mailer** - No ActionMailer equivalent for sending emails
+- **No background jobs** - No Sidekiq/Resque/ActiveJob for async processing
+- **No file uploads** - No ActiveStorage or file attachment handling
+- **No WebSockets** - No real-time connections or ActionCable equivalent
+- **No asset pipeline** - Using Tailwind CDN instead of build system
+- **No i18n** - No internationalization/translation support
+- **No caching layer** - No Redis, Memcached, or fragment caching
+- **No test framework** - No RSpec, Minitest, or test setup included
+- **No database pooling config** - Basic ActiveRecord setup only
+- **No API versioning** - Not designed as an API framework
+- **No admin dashboard** - No ActiveAdmin or admin interface
+- **No search** - No Elasticsearch or full-text search integration
 
 ## License
 
