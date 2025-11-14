@@ -1,0 +1,59 @@
+<div class="px-4 py-6 sm:px-0">
+  <div class="text-center">
+    <h1 class="text-4xl font-bold text-gray-900 mb-4">Welcome to Your Ruby App</h1>
+    <p class="text-xl text-gray-600 mb-8">Built with Falcon, Roda, ActiveRecord, and more</p>
+    
+    <div class="bg-white shadow overflow-hidden sm:rounded-lg max-w-2xl mx-auto">
+      <div class="px-4 py-5 sm:p-6">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Tech Stack</h2>
+        <ul class="space-y-3 text-left">
+          <li class="flex items-center">
+            <svg class="h-5 w-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span class="text-gray-700"><strong>Falcon</strong> - High-performance web server</span>
+          </li>
+          <li class="flex items-center">
+            <svg class="h-5 w-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span class="text-gray-700"><strong>Roda</strong> - Routing tree web framework</span>
+          </li>
+          <li class="flex items-center">
+            <svg class="h-5 w-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span class="text-gray-700"><strong>ActiveRecord</strong> - ORM for database</span>
+          </li>
+          <li class="flex items-center">
+            <svg class="h-5 w-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span class="text-gray-700"><strong>Sorcery</strong> - Authentication system</span>
+          </li>
+          <li class="flex items-center">
+            <svg class="h-5 w-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span class="text-gray-700"><strong>JWT</strong> - Token-based authentication</span>
+          </li>
+          <li class="flex items-center">
+            <svg class="h-5 w-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span class="text-gray-700"><strong>Tailwind CSS</strong> - Utility-first CSS framework</span>
+          </li>
+        </ul>
+        
+        <% unless @current_user %>
+          <div class="mt-8">
+            <a href="/auth/register" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+              Get Started
+            </a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

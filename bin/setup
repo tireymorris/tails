@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+
+puts '==> Setting up Ruby App...'
+
+puts "\n==> Installing dependencies..."
+system('bundle install') || abort('Failed to install dependencies')
+
+puts "\n==> Creating database directory..."
+FileUtils.mkdir_p('db')
+
+puts "\n==> Running migrations..."
+system('bundle exec rake db:migrate') || abort('Failed to run migrations')
+
+puts "\n==> Seeding database..."
+system('bundle exec rake db:seed')
+
+puts "\n==> Setup complete!"
+puts "\nTo start the application:"
+puts '  bundle exec falcon serve'
+puts "\nOr with rackup:"
+puts '  bundle exec rackup'
+puts "\nDemo credentials:"
+puts '  Email: demo@example.com'
+puts '  Password: password123'
