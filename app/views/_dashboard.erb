@@ -1,6 +1,6 @@
 <div class="mb-6">
-  <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100">Welcome back, <%= @current_user.email %>!</h1>
-  <p class="text-gray-600 dark:text-gray-400 mt-2">Here's your personalized dashboard</p>
+  <h1 class="heading-lg">Welcome back, <%= @current_user.email %>!</h1>
+  <p class="text-muted mt-2">Here's your personalized dashboard</p>
 </div>
 
 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-8">
@@ -26,9 +26,9 @@
   }) %>
 </div>
 
-<div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg">
-  <div class="px-4 py-5 sm:p-6">
-    <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100 mb-4">Account Management</h3>
+<div class="card">
+  <div class="card-padding">
+    <h3 class="heading-sm mb-4">Account Management</h3>
     <div class="space-y-3">
       <%= render('_info_row', locals: {
         title: 'Email Address',
