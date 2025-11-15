@@ -38,13 +38,13 @@
             subtitle: @current_user.email,
             border_class: 'border-b border-gray-200 dark:border-gray-700'
           }) %>
-          
+
           <%= render('_info_row', locals: {
             title: 'Authentication Method',
             subtitle: 'Cookie Session (24-hour expiration)',
             border_class: 'border-b border-gray-200 dark:border-gray-700'
           }) %>
-          
+
           <%= render('_info_row', locals: {
             title: 'Sign Out',
             subtitle: 'End your current session',
@@ -96,7 +96,7 @@
               <span class="text-gray-700 dark:text-gray-300"><strong>ERB + Tailwind</strong> - UI</span>
             </li>
           </ul>
-          
+
           <div class="mt-8">
             <a href="/auth/register" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600">
               Get Started

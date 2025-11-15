@@ -11,7 +11,6 @@ class App < Roda
   plugin :multi_route
 
   include AuthHelper
-  include CookieHelper
 
   def session
     env['rack.session']
