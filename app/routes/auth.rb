@@ -44,13 +44,21 @@ class App < Roda
     )
 
     if result[:success]
-      create_user_session(result[:user])
-      flash[:success] = 'Successfully registered'
-      req.redirect '/'
+      handle_register_success(result, req)
     else
-      flash[:error] = result[:errors].join(', ')
-      req.redirect '/auth/register'
+      handle_register_failure(result, req)
     end
+  end
+
+  def handle_register_success(result, req)
+    create_user_session(result[:user])
+    flash[:success] = 'Successfully registered'
+    req.redirect '/'
+  end
+
+  def handle_register_failure(result, req)
+    flash[:error] = result[:errors].join(', ')
+    req.redirect '/auth/register'
   end
 
   def handle_logout(req)

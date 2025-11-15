@@ -14,7 +14,7 @@ class AuthService
   def self.register(email, password, password_confirmation)
     AppLogger.info "Registration attempt for #{email}"
 
-    user = build_user(email, password, password_confirmation)
+    user = User.new(email:, password:, password_confirmation:)
 
     if user.save
       registration_success(user, email)
@@ -23,14 +23,6 @@ class AuthService
     end
   rescue StandardError => e
     handle_registration_error(e)
-  end
-
-  def self.build_user(email, password, password_confirmation)
-    User.new(
-      email: email,
-      password: password,
-      password_confirmation: password_confirmation
-    )
   end
 
   def self.registration_success(user, email)
