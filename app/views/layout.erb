@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tails 🦊</title>
-  <script src="https://cdn.twind.style" crossorigin></script>
-</head>
+
+<%= render '_head' %>
+
 <body class="bg-gray-50 dark:bg-gray-900 min-h-screen h-full">
   <nav class="bg-white dark:bg-gray-800 shadow-lg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,13 +13,8 @@
           </div>
           <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
             <a href="/" class="border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-gray-100 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-              Home
+              Dashboard
             </a>
-            <% if @current_user %>
-              <a href="/dashboard" class="border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-gray-100 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Dashboard
-              </a>
-            <% end %>
           </div>
         </div>
         <div class="hidden sm:ml-6 sm:flex sm:items-center space-x-4">
@@ -44,7 +36,7 @@
     </div>
   </nav>
 
-  <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+  <main class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
     <%= render '_flash' %>
     <%= yield %>
   </main>
