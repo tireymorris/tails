@@ -2,9 +2,7 @@
   <div class="p-5">
     <div class="flex items-center">
       <div class="flex-shrink-0">
-        <svg class="h-6 w-6 text-<%= color %>-600 dark:text-<%= color %>-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <%= icon_path %>
-        </svg>
+        <%= render('_icon', locals: { name: icon, css_class: "h-6 w-6 text-#{color}-600 dark:text-#{color}-400" }) %>
       </div>
       <div class="ml-5 w-0 flex-1">
         <dl>
