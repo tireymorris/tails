@@ -65,26 +65,11 @@
         <div class="px-4 py-5 sm:p-6">
           <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Tech Stack</h2>
           <ul class="space-y-3 text-left">
-            <li class="flex items-center">
-              <%= render('_icon', locals: { name: 'check', css_class: 'h-5 w-5 text-green-500 dark:text-green-400 mr-2', fill: 'currentColor' }) %>
-              <span class="text-gray-700 dark:text-gray-300"><strong>Falcon</strong> - Server</span>
-            </li>
-            <li class="flex items-center">
-              <%= render('_icon', locals: { name: 'check', css_class: 'h-5 w-5 text-green-500 dark:text-green-400 mr-2', fill: 'currentColor' }) %>
-              <span class="text-gray-700 dark:text-gray-300"><strong>Roda</strong> - Routing</span>
-            </li>
-            <li class="flex items-center">
-              <%= render('_icon', locals: { name: 'check', css_class: 'h-5 w-5 text-green-500 dark:text-green-400 mr-2', fill: 'currentColor' }) %>
-              <span class="text-gray-700 dark:text-gray-300"><strong>SQLite3 + ActiveRecord</strong> - Database</span>
-            </li>
-            <li class="flex items-center">
-              <%= render('_icon', locals: { name: 'check', css_class: 'h-5 w-5 text-green-500 dark:text-green-400 mr-2', fill: 'currentColor' }) %>
-              <span class="text-gray-700 dark:text-gray-300"><strong>BCrypt + Sessions</strong> - Auth</span>
-            </li>
-            <li class="flex items-center">
-              <%= render('_icon', locals: { name: 'check', css_class: 'h-5 w-5 text-green-500 dark:text-green-400 mr-2', fill: 'currentColor' }) %>
-              <span class="text-gray-700 dark:text-gray-300"><strong>ERB + Tailwind</strong> - UI</span>
-            </li>
+            <%= render('_feature_item', locals: { label: 'Falcon', description: 'Server' }) %>
+            <%= render('_feature_item', locals: { label: 'Roda', description: 'Routing' }) %>
+            <%= render('_feature_item', locals: { label: 'SQLite3 + ActiveRecord', description: 'Database' }) %>
+            <%= render('_feature_item', locals: { label: 'BCrypt + Sessions', description: 'Auth' }) %>
+            <%= render('_feature_item', locals: { label: 'ERB + Tailwind', description: 'UI' }) %>
           </ul>
 
           <div class="mt-8">
