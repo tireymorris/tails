@@ -4,11 +4,11 @@ A minimal web framework for Ruby developers who value simplicity over magic.
 
 ## Stack
 
-**Server**: Falcon  
-**Routing**: Roda  
-**Database**: SQLite3 + ActiveRecord  
-**Auth**: BCrypt + Rack::Session  
-**Templates**: ERB  
+**Server**: Falcon
+**Routing**: Roda
+**Database**: SQLite3 + ActiveRecord
+**Auth**: BCrypt + Roda Sessions
+**Templates**: ERB
 **Styling**: Tailwind CSS
 
 ## Setup

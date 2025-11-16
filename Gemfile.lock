@@ -135,11 +135,6 @@ GEM
     rack (3.2.4)
     rack-attack (6.7.0)
       rack (>= 1.0, < 4)
-    rack-csrf (0.1.0)
-      rack (>= 3.0.0)
-    rack-session (2.1.1)
-      base64 (>= 0.1.0)
-      rack (>= 3.0.0)
     rake (13.3.1)
     rb-fsevent (0.11.2)
     rb-inotify (0.11.1)
@@ -187,8 +182,6 @@ DEPENDENCIES
   falcon
   puma
   rack-attack
-  rack-csrf
-  rack-session
   rake
   rerun
   roda

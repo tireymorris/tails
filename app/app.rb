@@ -11,14 +11,6 @@ class App < Roda
 
   include AuthHelper
 
-  def session
-    env['rack.session']
-  end
-
-  def cookies
-    request.cookies
-  end
-
   route do |r|
     @current_user = current_user
 
