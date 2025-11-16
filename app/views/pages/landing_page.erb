@@ -1,0 +1,23 @@
+<div class="text-center">
+  <h1 class="heading-xl mb-4">Welcome to Tails 🦊</h1>
+  <p class="subtitle mb-8">A minimal web framework for Ruby developers who value simplicity over magic.</p>
+ 
+  <div class="card max-w-2xl mx-auto">
+    <div class="card-padding">
+      <h2 class="heading-md mb-4">Tech Stack</h2>
+      <ul class="space-y-3 text-left">
+        <%= render('components/feature_item', locals: { label: 'Falcon', description: 'Server' }) %>
+        <%= render('components/feature_item', locals: { label: 'Roda', description: 'Routing' }) %>
+        <%= render('components/feature_item', locals: { label: 'SQLite3 + ActiveRecord', description: 'Database' }) %>
+        <%= render('components/feature_item', locals: { label: 'BCrypt + Sessions', description: 'Auth' }) %>
+        <%= render('components/feature_item', locals: { label: 'ERB + Tailwind', description: 'UI' }) %>
+      </ul>
+
+      <div class="mt-8">
+        <a href="/auth/register" class="btn-primary-lg">
+          Get Started
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

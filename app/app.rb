@@ -1,7 +1,7 @@
 require 'roda'
 
 class App < Roda
-  plugin :render, views: 'app/views', engine: 'erb'
+  plugin :render, views: 'app/views', engine: 'erb', layout: 'layouts/layout'
   plugin :assets, css: 'app.css', path: 'app/assets'
   plugin :public, root: 'public'
   plugin :all_verbs
