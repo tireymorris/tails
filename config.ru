@@ -14,6 +14,8 @@ use Rack::Session::Cookie,
     same_site: :lax,
     expire_after: 24 * 60 * 60
 
-use Rack::CSRF, raise: true
+use Rack::CSRF, raise: true, skip: lambda { |env|
+  env['rack.attack.matched']
+}
 
 run App
