@@ -7,6 +7,7 @@ class App < Roda
   plugin :halt
   plugin :flash
   plugin :multi_route
+  plugin :route_csrf
 
   include AuthHelper
 
@@ -16,10 +17,6 @@ class App < Roda
 
   def cookies
     request.cookies
-  end
-
-  def csrf_tag
-    "<input type='hidden' name='_csrf' value='#{env['rack.csrf.token']}' />"
   end
 
   route do |r|

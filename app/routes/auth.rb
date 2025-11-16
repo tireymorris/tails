@@ -8,6 +8,7 @@ class App < Roda
     end
 
     r.post 'login' do
+      check_csrf!
       handle_login(r)
     end
 
@@ -17,6 +18,7 @@ class App < Roda
     end
 
     r.post 'register' do
+      check_csrf!
       handle_register(r)
     end
 
