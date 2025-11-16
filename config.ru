@@ -11,7 +11,8 @@ App.use RodaSessionMiddleware,
     path: '/',
     httponly: true,
     secure: ENV['RACK_ENV'] == 'production',
-    same_site: :lax
+    same_site: :lax,
+    max_age: 14.days.to_i
   }
 
 run App.freeze.app
