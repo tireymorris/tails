@@ -9,7 +9,7 @@ class App < Roda
   plugin :multi_route
   plugin :route_csrf
 
-  include AuthHelper
+  include CurrentUser
 
   route do |r|
     @current_user = current_user
@@ -17,9 +17,6 @@ class App < Roda
     r.multi_route
 
     r.root do
-      AppLogger.debug "Root route hit - Session user_id: #{session[:user_id].inspect}"
-      AppLogger.debug "Root route hit - @current_user: #{@current_user ? "ID #{@current_user.id} (#{@current_user.email})" : 'nil'}"
-      AppLogger.debug "Root route hit - Session keys: #{session.keys.inspect}"
       if @current_user
         view('pages/dashboard')
       else

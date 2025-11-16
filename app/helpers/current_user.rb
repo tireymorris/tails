@@ -1,4 +1,4 @@
-module AuthHelper
+module CurrentUser
   def current_user
     return @current_user if defined?(@current_user)
 
@@ -6,14 +6,6 @@ module AuthHelper
   rescue StandardError => e
     handle_session_error(e)
     @current_user = nil
-  end
-
-  def require_login
-    return if current_user.present?
-
-    AppLogger.warn "Unauthorized access attempt to #{request.path} from IP #{request.ip}"
-    flash[:error] = 'You must be logged in to access this page'
-    request.redirect '/auth/login'
   end
 
   private
