@@ -31,3 +31,4 @@ class App < Roda
 end
 
 require_relative 'routes/auth'
+require_relative 'routes/styles'

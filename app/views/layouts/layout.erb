@@ -12,8 +12,13 @@
             <a href="/" class="text-xl font-bold text-brand">Tails 🦊</a>
           </div>
           <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-            <a href="/" class="link-nav-active">
-              Dashboard
+            <% if @current_user %>
+              <a href="/" class="<%= request.path == '/' ? 'link-nav-active' : 'link-nav' %>">
+                Dashboard
+              </a>
+            <% end %>
+            <a href="/styles" class="<%= request.path == '/styles' ? 'link-nav-active' : 'link-nav' %>">
+              Guide
             </a>
           </div>
         </div>

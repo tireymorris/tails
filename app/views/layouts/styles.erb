@@ -24,11 +24,11 @@
   }
 
   .link-nav {
-    @apply text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 px-3 py-2 rounded-md text-sm font-medium;
+    @apply text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 inline-flex items-center px-3 py-2 text-sm font-medium border-b-2 border-transparent;
   }
 
   .link-nav-active {
-    @apply border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-gray-100 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium;
+    @apply text-gray-900 dark:text-gray-100 hover:text-gray-700 dark:hover:text-gray-100 inline-flex items-center px-3 py-2 text-sm font-medium border-b-2 border-indigo-500 dark:border-indigo-400;
   }
 
   /* ================================================
@@ -99,15 +99,15 @@
      Layout & Containers
      ================================================ */
 
-  .auth-container {
+  .centered-container {
     @apply min-h-[calc(100vh-10rem)] flex items-center justify-center -mx-4 sm:-mx-6 lg:-mx-8 -my-6;
   }
 
-  .auth-form-wrapper {
+  .form-wrapper {
     @apply max-w-md w-full space-y-8 px-4;
   }
 
-  .auth-heading {
+  .page-heading {
     @apply mt-6 text-center text-3xl font-extrabold text-primary;
   }
 
@@ -116,11 +116,11 @@
   }
 
   .card {
-    @apply bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg;
+    @apply bg-white dark:bg-gray-700 shadow overflow-hidden sm:rounded-lg text-gray-900 dark:text-gray-100;
   }
 
   .card-sm {
-    @apply bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg;
+    @apply bg-white dark:bg-gray-700 overflow-hidden shadow rounded-lg text-gray-900 dark:text-gray-100;
   }
 
   .card-padding {
