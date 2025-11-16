@@ -4,8 +4,15 @@ class AuthService
     user = User.find_by(email: email)
     AppLogger.debug "User found: #{user ? "ID #{user.id}" : 'nil'}"
 
-    return { success: false, error: "no user found with email #{email}" } unless user
-    return { success: false, error: "incorrect password for #{email}" } unless user.authenticate(password)
+    unless user
+      AppLogger.warn "Authentication failed: no user found with email #{email}"
+      return { success: false, error: "no user found with email #{email}" }
+    end
+
+    unless user.authenticate(password)
+      AppLogger.warn "Authentication failed: incorrect password for user #{user.id} (#{email})"
+      return { success: false, error: "incorrect password for #{email}" }
+    end
 
     AppLogger.info "User #{user.id} (#{email}) authenticated successfully"
     { success: true, user: user }

@@ -8,7 +8,12 @@ class App < Roda
     end
 
     r.post 'login' do
-      check_csrf!
+      begin
+        check_csrf!
+      rescue StandardError => e
+        AppLogger.warn "CSRF check failed on login for #{r.params['email']}: #{e.message}"
+        raise
+      end
       handle_login(r)
     end
 
@@ -18,7 +23,12 @@ class App < Roda
     end
 
     r.post 'register' do
-      check_csrf!
+      begin
+        check_csrf!
+      rescue StandardError => e
+        AppLogger.warn "CSRF check failed on registration for #{r.params['email']}: #{e.message}"
+        raise
+      end
       handle_register(r)
     end
 
@@ -36,6 +46,7 @@ class App < Roda
       AppLogger.debug "Login success - Session keys: #{session.keys.inspect}"
       req.redirect '/'
     else
+      AppLogger.warn "Login failed for #{req.params['email']}: #{result[:error]}"
       flash[:error] = 'Invalid email or password'
       req.redirect '/auth/login'
     end
@@ -57,11 +68,13 @@ class App < Roda
 
   def handle_register_success(result, req)
     create_user_session(result[:user])
+    AppLogger.info "User #{result[:user].id} session created after registration"
     flash[:success] = 'Successfully registered'
     req.redirect '/'
   end
 
   def handle_register_failure(result, req)
+    AppLogger.debug "Registration failed in route handler: #{result[:errors].join(', ')}"
     flash[:error] = result[:errors].join(', ')
     req.redirect '/auth/register'
   end
@@ -76,6 +89,7 @@ class App < Roda
 
   def create_user_session(user)
     session[:user_id] = user.id
-    session[:expires_at] = 24.hours.from_now.to_i
+    session[:expires_at] = 14.days.from_now.to_i
+    AppLogger.debug "Session created for user #{user.id} (#{user.email}), expires at #{Time.at(session[:expires_at])}"
   end
 end

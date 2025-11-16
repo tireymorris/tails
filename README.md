@@ -4,12 +4,12 @@ A minimal web framework for Ruby developers who value simplicity over magic.
 
 ## Stack
 
-**Server**: Falcon
-**Routing**: Roda
-**Database**: SQLite3 + ActiveRecord
-**Auth**: BCrypt + Roda Sessions
-**Templates**: ERB
-**Styling**: Tailwind CSS
+**Server**: Falcon  
+**Routing**: Roda  
+**Database**: SQLite3 + ActiveRecord  
+**Auth**: BCrypt + Roda Sessions  
+**Templates**: ERB  
+**Styling**: Tailwind CSS  
 
 ## Setup
 
@@ -49,7 +49,7 @@ Visit `http://localhost:1234`
 ## Features
 
 - User authentication (has_secure_password)
-- Cookie sessions with 24-hour expiration
+- Cookie sessions with 14-day expiration
 - Protected routes and dashboard
 - Structured logging (DEBUG in dev, INFO in prod)
 
@@ -60,7 +60,7 @@ Visit `http://localhost:1234`
 ## What's working?
 
 - ✅ Clean route separation with helper modules
-- ✅ BCrypt password hashing with 24-hour session expiration
+- ✅ BCrypt password hashing with 14-day session expiration
 - ✅ Secure cookies (HttpOnly + Secure + SameSite)
 - ✅ SQLite3 + ActiveRecord with migrations
 - ✅ One-command setup and dev server

@@ -27,6 +27,7 @@ class App < Roda
       end
     end
 
+    AppLogger.info "404 Not Found: #{r.request_method} #{r.path}"
     response.status = 404
     view('pages/not_found')
   end

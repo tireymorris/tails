@@ -11,6 +11,7 @@ module AuthHelper
   def require_login
     return if current_user.present?
 
+    AppLogger.warn "Unauthorized access attempt to #{request.path} from IP #{request.ip}"
     flash[:error] = 'You must be logged in to access this page'
     request.redirect '/auth/login'
   end
