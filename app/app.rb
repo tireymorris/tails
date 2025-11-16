@@ -39,7 +39,11 @@ class App < Roda
     r.root do
       AppLogger.debug "Root route hit - Session user_id: #{session[:user_id].inspect}"
       AppLogger.debug "Root route hit - @current_user: #{@current_user ? "ID #{@current_user.id} (#{@current_user.email})" : 'nil'}"
-      view('home')
+      if @current_user
+        view('pages/dashboard')
+      else
+        view('pages/landing_page')
+      end
     end
 
     response.status = 404
