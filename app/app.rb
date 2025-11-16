@@ -2,8 +2,6 @@ require 'roda'
 
 class App < Roda
   plugin :render, views: 'app/views', engine: 'erb', layout: 'layouts/layout'
-  plugin :assets, css: 'app.css', path: 'app/assets'
-  plugin :public, root: 'public'
   plugin :all_verbs
   plugin :json
   plugin :halt
@@ -20,18 +18,11 @@ class App < Roda
     request.cookies
   end
 
-  def csrf_token
-    env['rack.csrf.token']
-  end
-
   def csrf_tag
-    "<input type='hidden' name='_csrf' value='#{csrf_token}' />"
+    "<input type='hidden' name='_csrf' value='#{env['rack.csrf.token']}' />"
   end
 
   route do |r|
-    r.public
-    r.assets
-
     @current_user = current_user
 
     r.multi_route
