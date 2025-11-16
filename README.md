@@ -2,98 +2,81 @@
 
 A minimal web framework for Ruby developers who value simplicity over magic.
 
-## Stack
-
-**Server**: Falcon  
-**Routing**: Roda  
-**Database**: SQLite3 + ActiveRecord  
-**Auth**: BCrypt + Roda Sessions  
-**Templates**: ERB  
-**Styling**: Tailwind CSS  
-
-## Setup
-
-1. Copy the environment file and generate a secure session secret:
+## Quick Start
 
 ```bash
-cp env.example .env
-```
-
-2. Edit `.env` and set `SESSION_SECRET` to a long random string (64+ characters):
-
-```bash
-openssl rand -hex 64
-```
-
-3. Run setup:
-
-```bash
-./bin/setup
-```
-
-Creates a demo user: `demo@example.com` / `password123`
-
-## Run
-
-```bash
-./bin/dev
+git clone https://github.com/tireymorris/tails
+cd tails
+bin/setup
+bin/dev
 ```
 
 Visit `http://localhost:1234`
 
+**Demo credentials**: `demo@example.com` / `password123`
+
+## What's Included
+
+- **Falcon** - High-performance web server
+- **Roda** - Fast, tree-based routing
+- **ActiveRecord** - Database ORM with SQLite
+- **BCrypt** - Secure password hashing
+- **ERB + Tailwind** - Templates and styling
+- **Custom component library** - Reusable UI components
+
+## Documentation
+
+Start the app and visit the **Developer Guide** to see:
+
+- Complete setup instructions
+- Project architecture
+- Style system with live examples
+- Component library
+- Code examples
+
+The guide includes interactive examples of all components and utilities.
+
+## Key Features
+
+- ✅ User authentication with secure sessions
+- ✅ CSRF protection on all forms
+- ✅ Rate limiting (Rack::Attack)
+- ✅ Structured logging
+- ✅ Dark mode support
+- ✅ Custom Tailwind component system
+- ✅ One-command setup
+
+## Project Structure
+
+```
+app/
+  ├── app.rb              # Main Roda application
+  ├── models/             # ActiveRecord models
+  ├── routes/             # Route handlers
+  ├── services/           # Business logic
+  ├── helpers/            # Helper modules
+  └── views/
+      ├── components/     # Reusable ERB components
+      ├── layouts/        # Layout templates
+      └── pages/          # Page templates
+```
+
 ## Environment Variables
 
-- `SESSION_SECRET` (required): Long random string for session encryption (64+ chars)
-- `RACK_ENV` (optional): `development` or `production` (default: `development`)
+The setup script automatically generates a secure `SESSION_SECRET`. Environment variables are configured in `.env`:
 
-## Features
+- `SESSION_SECRET` - Session encryption key (auto-generated)
+- `RACK_ENV` - Environment (`development` or `production`)
 
-- User authentication (has_secure_password)
-- Cookie sessions with 14-day expiration
-- Protected routes and dashboard
-- Structured logging (DEBUG in dev, INFO in prod)
+## Production Considerations
 
-## Routes
+Before deploying to production, consider adding:
 
-**Web**: `/` `/auth/login` `/auth/register` `/auth/logout` `/dashboard`
-
-## What's working?
-
-- ✅ Clean route separation with helper modules
-- ✅ BCrypt password hashing with 14-day session expiration
-- ✅ Secure cookies (HttpOnly + Secure + SameSite)
-- ✅ SQLite3 + ActiveRecord with migrations
-- ✅ One-command setup and dev server
-- ✅ Structured logging and flash messages
-- ✅ CSRF protection on all forms
-- ✅ Rate limiting (login: 5/min, register: 3/5min)
-- ✅ Required session secrets (no insecure defaults)
-- ✅ Email format validation
-
-## What's not working?
-
-### Security gaps to fix before production:
-
-- [ ] Email verification
-- [ ] Password reset
-- [ ] Account lockout after failed attempts
-- [ ] Refresh tokens (currently no way to extend session without re-login)
-- [ ] Security headers (X-Frame-Options, CSP, etc.)
-
-### Missing features:
-
-- **No mailer** - No ActionMailer equivalent for sending emails
-- **No background jobs** - No Sidekiq/Resque/ActiveJob for async processing
-- **No file uploads** - No ActiveStorage or file attachment handling
-- **No WebSockets** - No real-time connections or ActionCable equivalent
-- **No asset pipeline** - Using Tailwind CDN instead of build system
-- **No i18n** - No internationalization/translation support
-- **No caching layer** - No Redis, Memcached, or fragment caching
-- **No test framework** - No RSpec, Minitest, or test setup included
-- **No database pooling config** - Basic ActiveRecord setup only
-- **No API versioning** - Not designed as an API framework
-- **No admin dashboard** - No ActiveAdmin or admin interface
-- **No search** - No Elasticsearch or full-text search integration
+- Email verification
+- Password reset functionality
+- Account lockout after failed attempts
+- Security headers (CSP, X-Frame-Options, etc.)
+- Background job processing (if needed)
 
 ## License
 

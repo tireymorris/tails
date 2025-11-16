@@ -20,7 +20,7 @@ class App < Roda
       if @current_user
         view('pages/dashboard')
       else
-        view('pages/landing_page')
+        view('pages/guide')
       end
     end
 
@@ -31,4 +31,4 @@ class App < Roda
 end
 
 require_relative 'routes/auth'
-require_relative 'routes/styles'
+require_relative 'routes/guide'

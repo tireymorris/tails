@@ -6,30 +6,36 @@
 <body class="bg-gray-50 dark:bg-gray-900 min-h-screen h-full">
   <nav class="nav-container">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between h-16">
-        <div class="flex">
-          <div class="flex-shrink-0 flex items-center">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center flex-1">
+          <div class="flex-shrink-0 flex items-center mr-8">
             <a href="/" class="text-xl font-bold text-brand">Tails 🦊</a>
           </div>
-          <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-            <% if @current_user %>
-              <a href="/" class="<%= request.path == '/' ? 'link-nav-active' : 'link-nav' %>">
-                Dashboard
-              </a>
-            <% end %>
-            <a href="/styles" class="<%= request.path == '/styles' ? 'link-nav-active' : 'link-nav' %>">
-              Guide
-            </a>
+          <div class="flex-1">
+            <nav class="-mb-px flex space-x-8">
+              <% if @current_user %>
+                <a href="/" class="<%= request.path == '/' ? 'border-indigo-500 text-indigo-600 dark:text-indigo-400' : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600' %> whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                  Dashboard
+                </a>
+                <a href="/guide" class="<%= request.path == '/guide' ? 'border-indigo-500 text-indigo-600 dark:text-indigo-400' : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600' %> whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                  Guide
+                </a>
+              <% else %>
+                <a href="/" class="<%= request.path == '/' || request.path == '/guide' ? 'border-indigo-500 text-indigo-600 dark:text-indigo-400' : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600' %> whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                  Home
+                </a>
+              <% end %>
+            </nav>
           </div>
         </div>
-        <div class="hidden sm:ml-6 sm:flex sm:items-center space-x-4">
+        <div class="flex items-center space-x-4">
           <% if @current_user %>
             <span class="text-secondary text-sm"><%= @current_user.email %></span>
             <a href="/auth/logout" class="btn-primary">
               Logout
             </a>
           <% else %>
-            <a href="/auth/login" class="link-nav">
+            <a href="/auth/login" class="link-primary text-sm">
               Login
             </a>
             <a href="/auth/register" class="btn-primary">

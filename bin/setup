@@ -4,10 +4,15 @@ require 'fileutils'
 puts '==> Setting up Tails 🦊...'
 
 unless File.exist?('.env')
-  puts "\n==> Creating .env file from template..."
-  FileUtils.cp('env.example', '.env')
-  puts "⚠️  IMPORTANT: Edit .env and set SESSION_SECRET to a secure random string!"
-  puts "   Generate one with: openssl rand -hex 64"
+  puts "\n==> Creating .env file with secure session secret..."
+  require 'securerandom'
+
+  env_content = File.read('env.example')
+  session_secret = SecureRandom.hex(64)
+  env_content.gsub!('your-secret-key-here', session_secret)
+
+  File.write('.env', env_content)
+  puts "✓ Generated secure SESSION_SECRET"
 end
 
 puts "\n==> Installing dependencies..."
