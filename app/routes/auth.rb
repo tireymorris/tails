@@ -3,6 +3,7 @@ class App < Roda
     AppLogger.debug "Auth route hit: #{r.request_method} #{r.path}"
 
     r.get 'login' do
+      r.redirect '/' if current_user
       view('auth/login')
     end
 
@@ -11,6 +12,7 @@ class App < Roda
     end
 
     r.get 'register' do
+      r.redirect '/' if current_user
       view('auth/register')
     end
 

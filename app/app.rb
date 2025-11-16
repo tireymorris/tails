@@ -41,6 +41,9 @@ class App < Roda
       AppLogger.debug "Root route hit - @current_user: #{@current_user ? "ID #{@current_user.id} (#{@current_user.email})" : 'nil'}"
       view('home')
     end
+
+    response.status = 404
+    view('pages/not_found')
   end
 end
 
