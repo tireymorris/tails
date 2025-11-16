@@ -1,12 +1,12 @@
-<% if flash[:success] %>
+<% if flash["success"] %>
   <div class="alert-success" role="alert">
-    <span class="block sm:inline"><%= flash[:success] %></span>
+    <span class="block sm:inline"><%= flash["success"] %></span>
   </div>
 <% end %>
 
-<% if flash[:error] %>
+<% if flash["error"] %>
   <div class="alert-error" role="alert">
-    <span class="block sm:inline"><%= flash[:error] %></span>
+    <span class="block sm:inline"><%= flash["error"] %></span>
   </div>
 <% end %>
 

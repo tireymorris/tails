@@ -3,7 +3,8 @@ require 'rack/attack'
 require 'roda/session_middleware'
 
 use Rack::Attack
-use RodaSessionMiddleware,
+
+App.use RodaSessionMiddleware,
   secret: ENV.fetch('SESSION_SECRET'),
   key: 'tails.session',
   cookie_options: {

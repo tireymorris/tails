@@ -33,6 +33,7 @@ class App < Roda
     if result[:success]
       create_user_session(result[:user])
       flash[:success] = 'Successfully logged in'
+      AppLogger.debug "Login success - Session keys: #{session.keys.inspect}"
       req.redirect '/'
     else
       flash[:error] = 'Invalid email or password'
