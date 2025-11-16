@@ -20,7 +20,7 @@ class App < Roda
       if @current_user
         view('pages/dashboard')
       else
-        view('pages/guide')
+        view('guide/index')
       end
     end
 
