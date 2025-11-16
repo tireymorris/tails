@@ -1,0 +1,71 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+
+puts '==> Removing guide documentation files...'
+
+guide_views = 'app/views/guide'
+guide_route = 'app/routes/guide.rb'
+app_file = 'app/app.rb'
+
+if File.directory?(guide_views)
+  puts "  Removing #{guide_views}/"
+  FileUtils.rm_rf(guide_views)
+  puts "  ✓ Removed guide views"
+else
+  puts "  ⊘ Guide views directory not found"
+end
+
+if File.exist?(guide_route)
+  puts "  Removing #{guide_route}"
+  File.delete(guide_route)
+  puts "  ✓ Removed guide route"
+else
+  puts "  ⊘ Guide route file not found"
+end
+
+if File.exist?(app_file)
+  puts "  Updating #{app_file}"
+  content = File.read(app_file)
+  
+  content.gsub!(/require_relative 'routes\/guide'\n/, '')
+  
+  content.gsub!(
+    /    r.root do\n      if @current_user\n        view\('pages\/dashboard'\)\n      else\n        view\('guide\/index'\)\n      end\n    end/,
+    "    r.root do\n      if @current_user\n        view('pages/dashboard')\n      else\n        r.redirect '/auth/login'\n      end\n    end"
+  )
+  
+  File.write(app_file, content)
+  puts "  ✓ Updated app.rb"
+else
+  puts "  ⊘ app.rb not found"
+end
+
+layout_file = 'app/views/layouts/layout.erb'
+if File.exist?(layout_file)
+  puts "  Updating #{layout_file}"
+  content = File.read(layout_file)
+  
+  content.gsub!(
+    /                <a href="\/guide".*?\n.*?Guide\n.*?<\/a>\n/m,
+    ''
+  )
+  
+  content.gsub!(
+    / \|\| request\.path == '\/guide'/,
+    ''
+  )
+  
+  File.write(layout_file, content)
+  puts "  ✓ Updated layout.erb"
+else
+  puts "  ⊘ layout.erb not found"
+end
+
+puts "\n==> Guide removal complete!"
+puts "\nThe following changes were made:"
+puts "  - Deleted app/views/guide/ directory"
+puts "  - Deleted app/routes/guide.rb"
+puts "  - Removed guide route from app/app.rb"
+puts "  - Removed guide navigation tab from layout"
+puts "  - Updated root route to redirect to login when not authenticated"
+

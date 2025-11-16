@@ -15,6 +15,19 @@ unless File.exist?('.env')
   puts "✓ Generated secure SESSION_SECRET"
 end
 
+puts "\n==> Guide Documentation Setup"
+puts "Tails includes built-in guide documentation at /guide."
+puts "This is helpful for learning the framework but can be removed for production."
+print "\nDo you want to keep the guide documentation? (y/n): "
+keep_guide = $stdin.gets.chomp.downcase
+
+if keep_guide == 'n' || keep_guide == 'no'
+  puts "\n==> Removing guide documentation..."
+  system('ruby bin/remove-guide') || abort('Failed to remove guide')
+else
+  puts "✓ Keeping guide documentation"
+end
+
 puts "\n==> Installing dependencies..."
 system('bundle install') || abort('Failed to install dependencies')
 
