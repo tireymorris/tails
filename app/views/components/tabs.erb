@@ -18,43 +18,81 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const tabs = document.querySelectorAll('[data-tab]');
-    const sections = document.querySelectorAll('[data-tab-content]');
+    const tabGroups = new Map();
     
-    function showTab(tabId) {
-      tabs.forEach(tab => {
-        const isActive = tab.dataset.tab === tabId;
-        if (isActive) {
-          tab.classList.remove('border-transparent', 'text-gray-500', 'dark:text-gray-400');
-          tab.classList.add('border-indigo-500', 'text-indigo-600', 'dark:text-indigo-400');
-        } else {
-          tab.classList.add('border-transparent', 'text-gray-500', 'dark:text-gray-400');
-          tab.classList.remove('border-indigo-500', 'text-indigo-600', 'dark:text-indigo-400');
-        }
-      });
+    document.querySelectorAll('[data-tab]').forEach(tab => {
+      let container = tab.closest('[data-tab-group]');
+      if (!container) {
+        container = tab.closest('nav').parentElement;
+      }
       
-      sections.forEach(section => {
-        if (section.dataset.tabContent === tabId) {
-          section.classList.remove('hidden');
-        } else {
-          section.classList.add('hidden');
-        }
-      });
+      if (!tabGroups.has(container)) {
+        tabGroups.set(container, {
+          tabs: [],
+          sections: [],
+          isMain: !container.hasAttribute('data-tab-group')
+        });
+      }
       
-      history.replaceState(null, '', '#' + tabId);
-    }
-    
-    tabs.forEach(tab => {
-      tab.addEventListener('click', (e) => {
-        e.preventDefault();
-        showTab(tab.dataset.tab);
-      });
+      const group = tabGroups.get(container);
+      group.tabs.push(tab);
     });
     
-    const hash = window.location.hash.slice(1);
-    if (hash) {
-      showTab(hash);
-    }
+    document.querySelectorAll('[data-tab-content]').forEach(section => {
+      const tabId = section.dataset.tabContent;
+      const tab = document.querySelector(`[data-tab="${tabId}"]`);
+      if (tab) {
+        let container = tab.closest('[data-tab-group]');
+        if (!container) {
+          container = tab.closest('nav').parentElement;
+        }
+        const group = tabGroups.get(container);
+        if (group) {
+          group.sections.push(section);
+        }
+      }
+    });
+    
+    tabGroups.forEach((group, container) => {
+      function showTab(tabId) {
+        group.tabs.forEach(tab => {
+          const isActive = tab.dataset.tab === tabId;
+          if (isActive) {
+            tab.classList.remove('border-transparent', 'text-gray-500', 'dark:text-gray-400');
+            tab.classList.add('border-indigo-500', 'text-indigo-600', 'dark:text-indigo-400');
+          } else {
+            tab.classList.add('border-transparent', 'text-gray-500', 'dark:text-gray-400');
+            tab.classList.remove('border-indigo-500', 'text-indigo-600', 'dark:text-indigo-400');
+          }
+        });
+        
+        group.sections.forEach(section => {
+          if (section.dataset.tabContent === tabId) {
+            section.classList.remove('hidden');
+          } else {
+            section.classList.add('hidden');
+          }
+        });
+        
+        if (group.isMain) {
+          history.replaceState(null, '', '#' + tabId);
+        }
+      }
+      
+      group.tabs.forEach(tab => {
+        tab.addEventListener('click', (e) => {
+          e.preventDefault();
+          showTab(tab.dataset.tab);
+        });
+      });
+      
+      if (group.isMain) {
+        const hash = window.location.hash.slice(1);
+        if (hash) {
+          showTab(hash);
+        }
+      }
+    });
   });
 </script>
 
