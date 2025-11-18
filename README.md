@@ -45,6 +45,7 @@ The guide includes interactive examples of all components and utilities.
 - ✅ Dark mode support
 - ✅ Custom Tailwind component system
 - ✅ One-command setup
+- ✅ Model generator for rapid development
 
 ## Project Structure
 
@@ -60,6 +61,21 @@ app/
       ├── layouts/        # Layout templates
       └── pages/          # Page templates
 ```
+
+## Generating Models
+
+Create new models with migrations using the generator:
+
+```bash
+bin/generate model Post title:string content:text user:references
+rake db:migrate
+```
+
+This creates:
+- Migration file: `db/migrate/00X_create_posts.rb`
+- Model file: `app/models/post.rb` (with validations and associations)
+
+Supported field types: `string`, `text`, `integer`, `float`, `decimal`, `boolean`, `date`, `datetime`, `time`, `references`
 
 ## Environment Variables
 

@@ -1,0 +1,108 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+
+def usage
+  puts "Usage: bin/generate model NAME [field:type ...]"
+  puts ""
+  puts "Examples:"
+  puts "  bin/generate model Post title:string content:text"
+  puts "  bin/generate model Comment post:references user:references body:text"
+  puts ""
+  puts "Supported types:"
+  puts "  string, text, integer, float, decimal, boolean, date, datetime, time"
+  puts "  references (for foreign keys)"
+  exit 1
+end
+
+def next_migration_number
+  migrations = Dir.glob('db/migrate/*.rb').sort
+  if migrations.empty?
+    '001'
+  else
+    last_number = File.basename(migrations.last).split('_').first.to_i
+    format('%03d', last_number + 1)
+  end
+end
+
+def parse_field(field_definition)
+  name, type = field_definition.split(':')
+  type ||= 'string'
+  { name: name, type: type }
+end
+
+def generate_migration(model_name, fields)
+  migration_number = next_migration_number
+  table_name = model_name.downcase + 's'
+  class_name = "Create#{model_name.capitalize}s"
+  filename = "db/migrate/#{migration_number}_create_#{table_name}.rb"
+
+  migration_content = <<~RUBY
+    class #{class_name} < ActiveRecord::Migration[7.0]
+      def change
+        create_table :#{table_name} do |t|
+  RUBY
+
+  fields.each do |field|
+    if field[:type] == 'references'
+      migration_content += "      t.references :#{field[:name]}, null: false, foreign_key: true\n"
+    else
+      migration_content += "      t.#{field[:type]} :#{field[:name]}\n"
+    end
+  end
+
+  migration_content += <<~RUBY
+
+          t.timestamps null: false
+        end
+      end
+    end
+  RUBY
+
+  File.write(filename, migration_content)
+  filename
+end
+
+def generate_model(model_name, fields)
+  class_name = model_name.capitalize
+  filename = "app/models/#{model_name.downcase}.rb"
+
+  model_content = "class #{class_name} < ActiveRecord::Base\n"
+
+  references = fields.select { |f| f[:type] == 'references' }
+  references.each do |ref|
+    model_content += "  belongs_to :#{ref[:name]}\n"
+  end
+
+  model_content += "\n" unless references.empty?
+
+  required_fields = fields.reject { |f| f[:type] == 'references' }
+  required_fields.each do |field|
+    model_content += "  validates :#{field[:name]}, presence: true\n"
+  end
+
+  model_content += "end\n"
+
+  File.write(filename, model_content)
+  filename
+end
+
+usage if ARGV.length < 2 || ARGV[0] != 'model'
+
+model_name = ARGV[1]
+field_definitions = ARGV[2..]
+fields = field_definitions.map { |f| parse_field(f) }
+
+puts "==> Generating model: #{model_name.capitalize}"
+
+FileUtils.mkdir_p('db/migrate')
+FileUtils.mkdir_p('app/models')
+
+migration_file = generate_migration(model_name, fields)
+puts "  ✓ Created #{migration_file}"
+
+model_file = generate_model(model_name, fields)
+puts "  ✓ Created #{model_file}"
+
+puts "\nNext steps:"
+puts "  bundle exec rake db:migrate"
+
