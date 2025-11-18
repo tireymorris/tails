@@ -65,6 +65,7 @@ GEM
       fiber-annotation
       fiber-local (~> 1.1)
       json
+    dotenv (3.1.8)
     drb (2.2.3)
     erubi (1.13.1)
     falcon (0.52.4)
@@ -178,6 +179,7 @@ DEPENDENCIES
   activerecord
   activesupport
   bcrypt
+  dotenv
   erubi
   falcon
   puma

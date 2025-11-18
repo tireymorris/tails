@@ -6,11 +6,5 @@ if [ ! -f .env ]; then
   exit 1
 fi
 
-if ! command -v foreman &> /dev/null
-then
-  echo "Installing foreman..."
-  gem install foreman
-fi
-
-foreman start -f Procfile.dev "$@"
+bundle exec falcon serve --bind http://localhost:1234
 
