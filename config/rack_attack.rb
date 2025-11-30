@@ -11,9 +11,9 @@ Rack::Attack.throttle('register/ip', limit: 3, period: 300) do |req|
 end
 
 Rack::Attack.throttled_responder = lambda do |req|
-  [429, {'Content-Type' => 'text/plain'}, ['Too Many Requests']]
+  [429, { 'Content-Type' => 'text/plain' }, ['Too Many Requests']]
 end
 
 Rack::Attack.blocklisted_responder = lambda do |req|
-  [403, {'Content-Type' => 'text/plain'}, ['Forbidden']]
+  [403, { 'Content-Type' => 'text/plain' }, ['Forbidden']]
 end

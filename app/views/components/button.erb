@@ -1,0 +1,24 @@
+<%
+  variant = defined?(variant) ? variant : 'primary'
+  size = defined?(size) ? size : 'default'
+  type_attr = defined?(type) ? type : 'button'
+  
+  classes = case variant
+  when 'primary'
+    case size
+    when 'full'
+      'relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+    when 'lg'
+      'inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600'
+    else
+      'bg-indigo-600 dark:bg-indigo-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700 dark:hover:bg-indigo-600'
+    end
+  else
+    'bg-indigo-600 dark:bg-indigo-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700 dark:hover:bg-indigo-600'
+  end
+%>
+
+<button type="<%= type_attr %>" class="<%= classes %>">
+  <%= text %>
+</button>
+

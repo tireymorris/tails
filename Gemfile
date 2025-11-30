@@ -19,3 +19,5 @@ group :development do
   gem 'puma'
   gem 'rerun'
 end
+
+gem "rubocop", "~> 1.81"

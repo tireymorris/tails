@@ -1,0 +1,29 @@
+<%
+  position = defined?(position) ? position : 'default'
+  type_attr = defined?(type) ? type : 'text'
+  required_attr = defined?(required) && required ? 'required' : ''
+  
+  base_classes = 'appearance-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'
+  
+  classes = case position
+  when 'top'
+    "#{base_classes} rounded-t-md"
+  when 'middle'
+    base_classes
+  when 'bottom'
+    "#{base_classes} rounded-b-md"
+  else
+    "#{base_classes} rounded-md"
+  end
+%>
+
+<input
+  id="<%= id %>"
+  name="<%= name %>"
+  type="<%= type_attr %>"
+  <%= required_attr %>
+  class="<%= classes %>"
+  placeholder="<%= defined?(placeholder) ? placeholder : '' %>"
+  value="<%= defined?(value) ? value : '' %>"
+/>
+

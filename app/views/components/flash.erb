@@ -1,12 +1,8 @@
 <% if flash["success"] %>
-  <div class="alert-success" role="alert">
-    <span class="block sm:inline"><%= flash["success"] %></span>
-  </div>
+  <%= render 'components/alert', locals: { message: flash["success"], type: 'success' } %>
 <% end %>
 
 <% if flash["error"] %>
-  <div class="alert-error" role="alert">
-    <span class="block sm:inline"><%= flash["error"] %></span>
-  </div>
+  <%= render 'components/alert', locals: { message: flash["error"], type: 'error' } %>
 <% end %>
 

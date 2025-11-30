@@ -90,14 +90,14 @@ def add_model_require(model_name)
   env_file = 'config/environment.rb'
   content = File.read(env_file)
   model_require = "require_relative '../app/models/#{model_name.downcase}'"
-  
+
   return if content.include?(model_require)
-  
+
   updated_content = content.sub(
     /(require_relative '\.\.\/app\/models\/\w+'\n)/,
     "\\1#{model_require}\n"
   )
-  
+
   File.write(env_file, updated_content)
 end
 
@@ -123,4 +123,3 @@ puts "  ✓ Added require to config/environment.rb"
 
 puts "\nNext steps:"
 puts "  bundle exec rake db:migrate"
-
