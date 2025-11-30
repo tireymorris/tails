@@ -24,18 +24,6 @@ Visit `http://localhost:1234`
 - **ERB + Tailwind** - Templates and styling
 - **Custom component library** - Reusable UI components
 
-## Documentation
-
-Start the app and visit the **Developer Guide** to see:
-
-- Complete setup instructions
-- Project architecture
-- Style system with live examples
-- Component library
-- Code examples
-
-The guide includes interactive examples of all components and utilities.
-
 ## Key Features
 
 - ✅ User authentication with secure sessions
