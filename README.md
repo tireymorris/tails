@@ -42,7 +42,6 @@ app/
   ├── app.rb              # Main Roda application
   ├── models/             # ActiveRecord models
   ├── routes/             # Route handlers
-  ├── services/           # Business logic
   ├── helpers/            # Helper modules
   └── views/
       ├── components/     # Reusable ERB components

@@ -6,8 +6,19 @@ class App < Roda
     end
 
     r.post 'login' do
-      check_csrf_with_logging(r, 'login')
-      handle_login(r)
+      check_csrf!
+      email = r.params['email']
+      user = User.find_by(email: email)&.authenticate(r.params['password'])
+
+      if user
+        create_user_session(user)
+        flash[:success] = 'Successfully logged in'
+        r.redirect '/'
+      else
+        AppLogger.warn "Login failed for #{email}"
+        flash[:error] = 'Invalid email or password'
+        r.redirect '/auth/login'
+      end
     end
 
     r.get 'register' do
@@ -16,64 +27,34 @@ class App < Roda
     end
 
     r.post 'register' do
-      check_csrf_with_logging(r, 'registration')
-      handle_register(r)
+      check_csrf!
+      user = User.new(
+        email: r.params['email'],
+        password: r.params['password'],
+        password_confirmation: r.params['password_confirmation']
+      )
+
+      if user.save
+        create_user_session(user)
+        flash[:success] = 'Successfully registered'
+        r.redirect '/'
+      else
+        AppLogger.warn "Registration failed for #{r.params['email']}: #{user.errors.full_messages.join(', ')}"
+        flash[:error] = user.errors.full_messages.join(', ')
+        r.redirect '/auth/register'
+      end
     end
 
     r.get 'logout' do
-      handle_logout(r)
+      session.clear
+      flash[:success] = 'Successfully logged out'
+      r.redirect '/'
     end
-  end
-
-  def handle_login(req)
-    result = AuthService.authenticate(req.params['email'], req.params['password'])
-
-    unless result[:success]
-      AppLogger.warn "Login failed for #{req.params['email']}: #{result[:error]}"
-      flash[:error] = 'Invalid email or password'
-      return req.redirect '/auth/login'
-    end
-
-    create_user_session(result[:user])
-    flash[:success] = 'Successfully logged in'
-    req.redirect '/'
-  end
-
-  def handle_register(req)
-    result = AuthService.register(
-      req.params['email'],
-      req.params['password'],
-      req.params['password_confirmation']
-    )
-
-    unless result[:success]
-      flash[:error] = result[:errors].join(', ')
-      return req.redirect '/auth/register'
-    end
-
-    create_user_session(result[:user])
-    flash[:success] = 'Successfully registered'
-    req.redirect '/'
-  end
-
-  def handle_logout(req)
-    session.clear
-    flash[:success] = 'Successfully logged out'
-    req.redirect '/'
   end
 
   private
 
   def create_user_session(user)
     session[:user_id] = user.id
-    session[:expires_at] = 14.days.from_now.to_i
-  end
-
-  def check_csrf_with_logging(req, action)
-    check_csrf!
-  rescue StandardError => e
-    email = req.params['email']&.to_s || 'unknown'
-    AppLogger.warn "CSRF check failed on #{action} for #{email}: #{e.message}"
-    raise
   end
 end

@@ -25,10 +25,8 @@ ActiveRecord::Base.establish_connection(
   database: "db/#{ENV['RACK_ENV']}.sqlite3"
 )
 
-Dir[File.join(__dir__, '../app/models/**/*.rb')].sort.each { |f| require f }
-Dir[File.join(__dir__, '../app/helpers/**/*.rb')].sort.each { |f| require f }
-Dir[File.join(__dir__, '../app/services/**/*.rb')].sort.each { |f| require f }
-Dir[File.join(__dir__, '../lib/**/*.rb')].sort.each { |f| require f }
+require_relative '../app/models/user'
+require_relative '../app/helpers/current_user'
 
 require_relative 'rack_attack'
 require_relative '../app/app'

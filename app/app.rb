@@ -2,9 +2,6 @@ require 'roda'
 
 class App < Roda
   plugin :render, views: 'app/views', engine: 'erb', layout: 'layouts/layout'
-  plugin :all_verbs
-  plugin :json
-  plugin :halt
   plugin :flash
   plugin :multi_route
   plugin :route_csrf

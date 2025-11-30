@@ -86,6 +86,21 @@ def generate_model(model_name, fields)
   filename
 end
 
+def add_model_require(model_name)
+  env_file = 'config/environment.rb'
+  content = File.read(env_file)
+  model_require = "require_relative '../app/models/#{model_name.downcase}'"
+  
+  return if content.include?(model_require)
+  
+  updated_content = content.sub(
+    /(require_relative '\.\.\/app\/models\/\w+'\n)/,
+    "\\1#{model_require}\n"
+  )
+  
+  File.write(env_file, updated_content)
+end
+
 usage if ARGV.length < 2 || ARGV[0] != 'model'
 
 model_name = ARGV[1]
@@ -102,6 +117,9 @@ puts "  ✓ Created #{migration_file}"
 
 model_file = generate_model(model_name, fields)
 puts "  ✓ Created #{model_file}"
+
+add_model_require(model_name)
+puts "  ✓ Added require to config/environment.rb"
 
 puts "\nNext steps:"
 puts "  bundle exec rake db:migrate"
