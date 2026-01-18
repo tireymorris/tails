@@ -29,7 +29,7 @@
         "Documentation added explaining how to run linting"
       ],
       "priority": 1,
-      "passes": false
+      "passes": true
     },
     {
       "id": "story-3",
