@@ -21,3 +21,8 @@ group :development do
 end
 
 gem "rubocop", "~> 1.81"
+
+group :test do
+  gem 'rspec'
+  gem 'rack-test'
+end

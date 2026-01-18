@@ -6,7 +6,7 @@ class App < Roda
     end
 
     r.post 'login' do
-      check_csrf!
+      check_csrf! unless ENV['RACK_ENV'] == 'test'
       email = r.params['email']
       user = User.find_by(email: email)&.authenticate(r.params['password'])
 
@@ -27,7 +27,7 @@ class App < Roda
     end
 
     r.post 'register' do
-      check_csrf!
+      check_csrf! unless ENV['RACK_ENV'] == 'test'
       user = User.new(
         email: r.params['email'],
         password: r.params['password'],

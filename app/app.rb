@@ -4,7 +4,8 @@ class App < Roda
   plugin :render, views: 'app/views', engine: 'erb', layout: 'layouts/layout'
   plugin :flash
   plugin :multi_route
-  plugin :route_csrf
+  plugin :route_csrf, skip_if: -> { ENV['RACK_ENV'] == 'test' }
+  plugin :sessions, secret: ENV.fetch('SESSION_SECRET', 'test_secret')
 
   include CurrentUser
 
