@@ -69,7 +69,6 @@ RSpec.describe 'Auth routes' do
 
   describe 'GET /auth/logout' do
     it 'logs out the user' do
-      # Simulate logged in user
       post '/auth/login', { email: 'test@example.com', password: 'password123' }
       get '/auth/logout'
       expect(last_response).to be_redirect
