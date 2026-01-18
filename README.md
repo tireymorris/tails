@@ -35,6 +35,28 @@ Visit `http://localhost:1234`
 - ✅ One-command setup
 - ✅ Model generator for rapid development
 
+## Code Quality
+
+### Linting
+
+This project uses RuboCop for code style and linting.
+
+To run linting:
+
+```bash
+rake lint
+# or
+bundle exec rubocop
+```
+
+To auto-fix offenses:
+
+```bash
+bundle exec rubocop --autocorrect
+```
+
+The `.rubocop.yml` file contains the configuration rules.
+
 ## Project Structure
 
 ```

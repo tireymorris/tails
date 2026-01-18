@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'config/environment'
 
 namespace :db do
@@ -28,4 +30,9 @@ namespace :db do
     require_relative 'db/seeds'
     puts 'Database seeded'
   end
+end
+
+desc 'Run RuboCop linting'
+task :lint do
+  system('bundle exec rubocop')
 end

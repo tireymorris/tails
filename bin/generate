@@ -1,16 +1,18 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 require 'fileutils'
 
 def usage
-  puts "Usage: bin/generate model NAME [field:type ...]"
-  puts ""
-  puts "Examples:"
-  puts "  bin/generate model Post title:string content:text"
-  puts "  bin/generate model Comment post:references user:references body:text"
-  puts ""
-  puts "Supported types:"
-  puts "  string, text, integer, float, decimal, boolean, date, datetime, time"
-  puts "  references (for foreign keys)"
+  puts 'Usage: bin/generate model NAME [field:type ...]'
+  puts ''
+  puts 'Examples:'
+  puts '  bin/generate model Post title:string content:text'
+  puts '  bin/generate model Comment post:references user:references body:text'
+  puts ''
+  puts 'Supported types:'
+  puts '  string, text, integer, float, decimal, boolean, date, datetime, time'
+  puts '  references (for foreign keys)'
   exit 1
 end
 
@@ -32,7 +34,7 @@ end
 
 def generate_migration(model_name, fields)
   migration_number = next_migration_number
-  table_name = model_name.downcase + 's'
+  table_name = "#{model_name.downcase}s"
   class_name = "Create#{model_name.capitalize}s"
   filename = "db/migrate/#{migration_number}_create_#{table_name}.rb"
 
@@ -43,11 +45,11 @@ def generate_migration(model_name, fields)
   RUBY
 
   fields.each do |field|
-    if field[:type] == 'references'
-      migration_content += "      t.references :#{field[:name]}, null: false, foreign_key: true\n"
-    else
-      migration_content += "      t.#{field[:type]} :#{field[:name]}\n"
-    end
+    migration_content += if field[:type] == 'references'
+                           "      t.references :#{field[:name]}, null: false, foreign_key: true\n"
+                         else
+                           "      t.#{field[:type]} :#{field[:name]}\n"
+                         end
   end
 
   migration_content += <<~RUBY
@@ -94,7 +96,7 @@ def add_model_require(model_name)
   return if content.include?(model_require)
 
   updated_content = content.sub(
-    /(require_relative '\.\.\/app\/models\/\w+'\n)/,
+    %r{(require_relative '\.\./app/models/\w+'\n)},
     "\\1#{model_require}\n"
   )
 
@@ -119,7 +121,7 @@ model_file = generate_model(model_name, fields)
 puts "  ✓ Created #{model_file}"
 
 add_model_require(model_name)
-puts "  ✓ Added require to config/environment.rb"
+puts '  ✓ Added require to config/environment.rb'
 
 puts "\nNext steps:"
-puts "  bundle exec rake db:migrate"
+puts '  bundle exec rake db:migrate'

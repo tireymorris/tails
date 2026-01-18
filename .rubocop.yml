@@ -1,0 +1,36 @@
+AllCops:
+  TargetRubyVersion: 3.2
+  Exclude:
+    - vendor/**/*
+    - db/**/*
+    - spec/**/*
+
+Layout/LineLength:
+  Max: 120
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: always
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Layout/HashAlignment:
+  EnforcedStyle: table
+
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
+
+Metrics/MethodLength:
+  Max: 30
+
+Metrics/ClassLength:
+  Max: 100
+
+Metrics/BlockLength:
+  Max: 50
+
+Metrics/AbcSize:
+  Max: 20

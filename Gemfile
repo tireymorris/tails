@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 ruby '~> 3.2'
@@ -20,9 +22,9 @@ group :development do
   gem 'rerun'
 end
 
-gem "rubocop", "~> 1.81"
+gem 'rubocop', '~> 1.81'
 
 group :test do
-  gem 'rspec'
   gem 'rack-test'
+  gem 'rspec'
 end

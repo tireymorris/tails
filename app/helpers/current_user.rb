@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CurrentUser
   def current_user
     return @current_user if defined?(@current_user)

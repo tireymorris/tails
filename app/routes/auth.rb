@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class App < Roda
   route 'auth' do |r|
     r.get 'login' do
