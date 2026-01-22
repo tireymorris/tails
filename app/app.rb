@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'securerandom'
 require 'roda'
 
 class App < Roda
@@ -7,7 +8,9 @@ class App < Roda
   plugin :flash
   plugin :multi_route
   plugin :route_csrf, skip_if: -> { ENV['RACK_ENV'] == 'test' }
-  plugin :sessions, secret: ENV.fetch('SESSION_SECRET', 'test_secret')
+  require 'securerandom'
+
+  plugin :sessions, secret: ENV.fetch('SESSION_SECRET', SecureRandom.hex(64))
 
   include CurrentUser
 
