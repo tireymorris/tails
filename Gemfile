@@ -18,7 +18,6 @@ gem 'sqlite3'
 gem 'tilt'
 
 group :development do
-  gem 'puma'
   gem 'rerun'
 end
 

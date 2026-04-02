@@ -6,14 +6,7 @@ ENV['RACK_ENV'] = 'test'
 
 require_relative '../config/environment'
 
-ActiveRecord::Base.establish_connection(
-  adapter: 'sqlite3',
-  database: 'db/test.sqlite3'
-)
-
 ActiveRecord::MigrationContext.new('db/migrate').migrate
-
-require_relative '../app/app'
 
 module RSpecMixin
   include Rack::Test::Methods

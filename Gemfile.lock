@@ -119,7 +119,6 @@ GEM
     minitest (6.0.1)
       prism (~> 1.5)
     msgpack (1.8.0)
-    nio4r (2.7.5)
     openssl (4.0.0)
     parallel (1.27.0)
     parser (3.3.10.1)
@@ -142,8 +141,6 @@ GEM
       protocol-http (~> 0.58)
       rack (>= 1.0)
     protocol-url (0.4.0)
-    puma (7.1.0)
-      nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.2.4)
     rack-attack (6.8.0)
@@ -229,7 +226,6 @@ DEPENDENCIES
   dotenv
   erubi
   falcon
-  puma
   rack-attack
   rack-test
   rake
