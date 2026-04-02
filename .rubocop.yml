@@ -1,36 +1,47 @@
 AllCops:
   TargetRubyVersion: 3.2
+  NewCops: enable
+  EnabledByDefault: true
+  SuggestExtensions: false
   Exclude:
     - vendor/**/*
     - db/**/*
-    - spec/**/*
 
-Layout/LineLength:
-  Max: 120
+Lint/ConstantResolution:
+  Enabled: false
+
+Style/Copyright:
+  Enabled: false
+
+Bundler/GemComment:
+  Enabled: false
+
+Bundler/GemVersion:
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
 
-Style/FrozenStringLiteralComment:
-  EnforcedStyle: always
+Style/DocumentationMethod:
+  Enabled: false
 
-Style/StringLiterals:
-  EnforcedStyle: single_quotes
+Style/StringHashKeys:
+  Exclude:
+    - config/rack_attack.rb
 
-Layout/HashAlignment:
-  EnforcedStyle: table
-
-Layout/ArgumentAlignment:
-  EnforcedStyle: with_fixed_indentation
-
-Metrics/MethodLength:
-  Max: 30
-
-Metrics/ClassLength:
-  Max: 100
-
-Metrics/BlockLength:
-  Max: 50
+Style/TopLevelMethodDefinition:
+  Exclude:
+    - bin/**/*
 
 Metrics/AbcSize:
-  Max: 20
+  Exclude:
+    - bin/**/*
+
+Metrics/MethodLength:
+  Exclude:
+    - bin/**/*
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+    - app/routes/**/*.rb

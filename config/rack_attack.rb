@@ -12,10 +12,12 @@ Rack::Attack.throttle('register/ip', limit: 3, period: 300) do |req|
   req.ip if req.path == '/auth/register' && req.post?
 end
 
-Rack::Attack.throttled_responder = lambda do |_req|
-  [429, { 'Content-Type' => 'text/plain' }, ['Too Many Requests']]
-end
+Rack::Attack.throttled_responder =
+  lambda do |_req|
+    [429, { 'Content-Type' => 'text/plain' }, ['Too Many Requests']]
+  end
 
-Rack::Attack.blocklisted_responder = lambda do |_req|
-  [403, { 'Content-Type' => 'text/plain' }, ['Forbidden']]
-end
+Rack::Attack.blocklisted_responder =
+  lambda do |_req|
+    [403, { 'Content-Type': 'text/plain' }, ['Forbidden']]
+  end

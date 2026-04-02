@@ -1,0 +1,6 @@
+---
+glob: '**/*.erb'
+exclude:
+  - '**/vendor/**/*'
+  - '**/node_modules/**/*'
+EnableDefaultLinters: true

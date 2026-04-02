@@ -2,7 +2,7 @@
   variant = defined?(variant) ? variant : 'primary'
   css_class = defined?(css_class) ? css_class : ''
   is_active = defined?(active) && active
-  
+
   classes = case variant
   when 'primary'
     "font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 #{css_class}"
@@ -24,4 +24,3 @@
 <a href="<%= href %>" class="<%= classes.strip %>">
   <%= text %>
 </a>
-

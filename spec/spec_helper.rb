@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'bundler/setup'
 require 'rack/test'
 require 'rspec'
@@ -10,13 +12,14 @@ ActiveRecord::MigrationContext.new('db/migrate').migrate
 
 module RSpecMixin
   include Rack::Test::Methods
+
   def app
     App
   end
 end
 
 RSpec.configure do |config|
-  config.include RSpecMixin
+  config.include(RSpecMixin)
 
   config.before(:suite) do
     ActiveRecord::Base.connection.execute('DELETE FROM users')

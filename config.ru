@@ -6,6 +6,6 @@ require 'roda/session_middleware'
 
 use Rack::Attack
 
-App.use RodaSessionMiddleware, SESSION_OPTIONS
+App.use(RodaSessionMiddleware, SESSION_OPTIONS)
 
 run App.freeze.app

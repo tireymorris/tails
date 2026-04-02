@@ -18,7 +18,7 @@ namespace :db do
   desc 'Drop the database'
   task :drop do
     db_file = "db/#{ENV['RACK_ENV'] || 'development'}.sqlite3"
-    File.delete(db_file) if File.exist?(db_file)
+    FileUtils.rm_f(db_file)
     puts 'Database dropped'
   end
 
@@ -32,7 +32,9 @@ namespace :db do
   end
 end
 
-desc 'Run RuboCop linting'
+desc 'Autocorrect with RuboCop and erb_lint (run before push; CI fails if this changes files)'
 task :lint do
-  system('bundle exec rubocop')
+  ok = system('bundle exec rubocop -a')
+  ok &&= system('bundle exec erb_lint --lint-all --autocorrect')
+  exit(1) unless ok
 end

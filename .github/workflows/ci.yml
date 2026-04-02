@@ -22,8 +22,10 @@ jobs:
     - name: Run tests
       run: bundle exec rspec
 
-    - name: Run linting
-      run: bundle exec rubocop
+    - name: Lint (autocorrect + verify clean tree)
+      run: |
+        bundle exec rake lint
+        git diff --exit-code
 
     - name: Run security audit
       run: |

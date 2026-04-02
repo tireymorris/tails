@@ -11,6 +11,6 @@ class User < ActiveRecord::Base
   private
 
   def log_validation_errors
-    AppLogger.debug "User validation failed: #{errors.full_messages.join(', ')}"
+    AppLogger.debug("User validation failed: #{errors.full_messages.join(', ')}")
   end
 end

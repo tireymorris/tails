@@ -20,6 +20,7 @@ gem 'sqlite3'
 gem 'tilt'
 
 group :development do
+  gem 'erb_lint', '~> 0.9.0', require: false
   gem 'rerun'
 end
 

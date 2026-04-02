@@ -2,12 +2,12 @@
 
 class App < Roda
   route 'auth' do |r|
-    r.get 'login' do
-      r.redirect '/' if current_user
+    r.get('login') do
+      r.redirect('/') if current_user
       view('auth/login')
     end
 
-    r.post 'login' do
+    r.post('login') do
       check_csrf! unless ENV['RACK_ENV'] == 'test'
       email = r.params['email']
       user = User.find_by(email: email)&.authenticate(r.params['password'])
@@ -15,20 +15,20 @@ class App < Roda
       if user
         create_user_session(user)
         flash[:success] = 'Successfully logged in'
-        r.redirect '/'
+        r.redirect('/')
       else
-        AppLogger.warn "Login failed for #{email}"
+        AppLogger.warn("Login failed for #{email}")
         flash[:error] = 'Invalid email or password'
-        r.redirect '/auth/login'
+        r.redirect('/auth/login')
       end
     end
 
-    r.get 'register' do
-      r.redirect '/' if current_user
+    r.get('register') do
+      r.redirect('/') if current_user
       view('auth/register')
     end
 
-    r.post 'register' do
+    r.post('register') do
       check_csrf! unless ENV['RACK_ENV'] == 'test'
       user = User.new(
         email: r.params['email'],
@@ -39,18 +39,18 @@ class App < Roda
       if user.save
         create_user_session(user)
         flash[:success] = 'Successfully registered'
-        r.redirect '/'
+        r.redirect('/')
       else
-        AppLogger.warn "Registration failed for #{r.params['email']}: #{user.errors.full_messages.join(', ')}"
+        AppLogger.warn("Registration failed for #{r.params['email']}: #{user.errors.full_messages.join(', ')}")
         flash[:error] = user.errors.full_messages.join(', ')
-        r.redirect '/auth/register'
+        r.redirect('/auth/register')
       end
     end
 
-    r.get 'logout' do
+    r.get('logout') do
       session.clear
       flash[:success] = 'Successfully logged out'
-      r.redirect '/'
+      r.redirect('/')
     end
   end
 

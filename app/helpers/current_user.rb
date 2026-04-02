@@ -6,7 +6,7 @@ module CurrentUser
 
     @current_user = load_user_from_session
   rescue StandardError => e
-    AppLogger.warn "Session error (clearing session): #{e.message}"
+    AppLogger.warn("Session error (clearing session): #{e.message}")
     session.clear
     @current_user = nil
   end
@@ -14,7 +14,7 @@ module CurrentUser
   private
 
   def load_user_from_session
-    return nil unless session[:user_id]
+    return unless session[:user_id]
 
     User.find_by(id: session[:user_id])
   end

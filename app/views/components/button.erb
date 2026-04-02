@@ -2,7 +2,7 @@
   variant = defined?(variant) ? variant : 'primary'
   size = defined?(size) ? size : 'default'
   type_attr = defined?(type) ? type : 'button'
-  
+
   classes = case variant
   when 'primary'
     case size
@@ -21,4 +21,3 @@
 <button type="<%= type_attr %>" class="<%= classes %>">
   <%= text %>
 </button>
-

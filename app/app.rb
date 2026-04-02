@@ -21,11 +21,11 @@ class App < Roda
       if @current_user
         view('pages/dashboard')
       else
-        r.redirect '/auth/login'
+        r.redirect('/auth/login')
       end
     end
 
-    AppLogger.info "404 Not Found: #{r.request_method} #{r.path}"
+    AppLogger.info("404 Not Found: #{r.request_method} #{r.path}")
     response.status = 404
     view('pages/not_found')
   end
