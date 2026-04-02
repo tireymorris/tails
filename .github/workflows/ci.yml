@@ -28,4 +28,5 @@ jobs:
     - name: Run security audit
       run: |
         gem install bundler-audit
+        bundle audit update
         bundle audit
