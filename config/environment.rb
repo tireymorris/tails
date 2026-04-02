@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'securerandom'
+
 require 'bundler/setup'
 require 'dotenv/load'
 require 'logger'
@@ -26,6 +28,18 @@ ActiveRecord::Base.establish_connection(
   adapter: 'sqlite3',
   database: "db/#{ENV['RACK_ENV']}.sqlite3"
 )
+
+SESSION_OPTIONS = {
+  secret: ENV.fetch('SESSION_SECRET', SecureRandom.hex(64)),
+  key: 'tails.session',
+  cookie_options: {
+    path: '/',
+    httponly: true,
+    secure: ENV['RACK_ENV'] == 'production',
+    same_site: :lax,
+    max_age: 14.days.to_i
+  }
+}.freeze
 
 require_relative '../app/models/user'
 require_relative '../app/helpers/current_user'
