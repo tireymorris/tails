@@ -1,0 +1,15 @@
+<%
+  input_locals = {
+    id: id,
+    name: name,
+    type: type,
+    required: defined?(required) ? required : true,
+    position: position,
+    placeholder: placeholder
+  }
+  input_locals[:value] = value if defined?(value)
+%>
+<div>
+  <label for="<%= id %>" class="sr-only"><%= label_text %></label>
+  <%= render 'components/input', locals: input_locals %>
+</div>

@@ -1,0 +1,37 @@
+<form class="mt-8 space-y-6" action="/auth/register" method="POST">
+  <%= csrf_tag('/auth/register') %>
+  <div class="rounded-md shadow-sm -space-y-px">
+    <%= render 'components/labeled_input', locals: {
+      id: 'email',
+      name: 'email',
+      type: 'email',
+      label_text: 'Email address',
+      position: 'top',
+      placeholder: 'Email address'
+    } %>
+    <%= render 'components/labeled_input', locals: {
+      id: 'password',
+      name: 'password',
+      type: 'password',
+      label_text: 'Password',
+      position: 'middle',
+      placeholder: 'Password (min 6 characters)'
+    } %>
+    <%= render 'components/labeled_input', locals: {
+      id: 'password_confirmation',
+      name: 'password_confirmation',
+      type: 'password',
+      label_text: 'Confirm Password',
+      position: 'bottom',
+      placeholder: 'Confirm password'
+    } %>
+  </div>
+
+  <div>
+    <%= render 'components/button', locals: { text: 'Register', type: 'submit', variant: 'primary', size: 'full' } %>
+  </div>
+
+  <div class="text-center">
+    <%= render 'components/link', locals: { href: '/auth/login', text: 'Already have an account? Sign in here', variant: 'primary' } %>
+  </div>
+</form>
